@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  reporting_storage: MyText
+  no_of_administrators: MyText
+  billing: MyText
+  one_year_price_lock: MyText
+  billing_data_export: MyText
+  automated_invoices_by_projects: MyText
+  subprojects: MyText
+  hipaa_baa: MyText
+  media_storage: MyText
+  rtmp_out: MyText
+  reseller_tax_agreement: MyText
+  call_throughout: MyText
+  dedicated_ip: MyText
+  additional_incremental_cps: MyText
+
+two:
+  title: MyString
+  reporting_storage: MyText
+  no_of_administrators: MyText
+  billing: MyText
+  one_year_price_lock: MyText
+  billing_data_export: MyText
+  automated_invoices_by_projects: MyText
+  subprojects: MyText
+  hipaa_baa: MyText
+  media_storage: MyText
+  rtmp_out: MyText
+  reseller_tax_agreement: MyText
+  call_throughout: MyText
+  dedicated_ip: MyText
+  additional_incremental_cps: MyText

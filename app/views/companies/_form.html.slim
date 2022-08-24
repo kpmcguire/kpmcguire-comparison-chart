@@ -1,0 +1,9 @@
+= turbo_frame_tag company do
+  = form_with model: company, id: dom_id(company) do |f|
+    - if company.errors.any?
+      = company.errors.full_messages
+    
+    = f.text_field :plan_id, value: @business_plan.first.id
+
+    .field 
+      = f.submit "submit", class: 'button'

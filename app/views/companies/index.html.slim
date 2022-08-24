@@ -1,0 +1,12 @@
+h1 Companies
+
+ul
+  - @companies.each do |c|
+    li 
+      | Company ID: 
+      => c.id
+      | Created at: 
+      => c.created_at
+      | Subscription plan: 
+      - if c.try(:plan)    
+        => c.plan.title      

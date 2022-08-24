@@ -1,0 +1,77 @@
+= form_with(model: @plan) do |form|
+  - if @plan.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@plan.errors.count, "error")} prohibited this plan from being saved:"
+      ul
+        - @plan.errors.each do |error|
+          li = error.full_message
+
+
+  div
+    = form.label :title, style: "display: block"
+    = form.text_field :title
+  div
+    = form.label :cost, style: "display: block"
+    = form.text_field :cost
+  div
+    = form.label :description, style: "display: block"
+    = form.text_field :description    
+
+  div
+    = form.label :reporting_storage, style: "display: block"
+    = form.text_area :reporting_storage
+
+  div
+    = form.label :no_of_administrators, style: "display: block"
+    = form.text_area :no_of_administrators
+
+  div
+    = form.label :billing, style: "display: block"
+    = form.text_area :billing
+
+  div
+    = form.label :one_year_price_lock, style: "display: block"
+    = form.text_area :one_year_price_lock
+
+  div
+    = form.label :billing_data_export, style: "display: block"
+    = form.text_area :billing_data_export
+
+  div
+    = form.label :automated_invoices_by_projects, style: "display: block"
+    = form.text_area :automated_invoices_by_projects
+
+  div
+    = form.label :subprojects, style: "display: block"
+    = form.text_area :subprojects
+
+  div
+    = form.label :hipaa_baa, style: "display: block"
+    = form.text_area :hipaa_baa
+
+  div
+    = form.label :media_storage, style: "display: block"
+    = form.text_area :media_storage
+
+  div
+    = form.label :rtmp_out, style: "display: block"
+    = form.text_area :rtmp_out
+
+  div
+    = form.label :reseller_tax_agreement, style: "display: block"
+    = form.text_area :reseller_tax_agreement
+
+  div
+    = form.label :call_throughout, style: "display: block"
+    = form.text_area :call_throughout
+
+  div
+    = form.label :dedicated_ip, style: "display: block"
+    = form.text_area :dedicated_ip
+
+  div
+    = form.label :additional_incremental_cps, style: "display: block"
+    = form.text_area :additional_incremental_cps
+
+  div
+    = form.submit

@@ -81,8 +81,4 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: signalwire_product_chart_kpmcguire_production
-  username: signalwire_product_chart_kpmcguire
-  password: <%= ENV["SIGNALWIRE_PRODUCT_CHART_KPMCGUIRE_DATABASE_PASSWORD"] %>
+

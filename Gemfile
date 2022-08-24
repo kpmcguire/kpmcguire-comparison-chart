@@ -48,7 +48,6 @@ gem "sassc-rails"
 gem "slim-rails"
 gem "font-awesome-sass", "~> 5.15.1"
 gem "dotenv-rails"
-gem 'google-webfonts-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

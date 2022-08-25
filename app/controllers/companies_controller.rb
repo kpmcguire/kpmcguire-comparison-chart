@@ -16,7 +16,7 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    @company = Company.joins(:plan).where(plan: {title: "Business"})
+    @company = Company.find(params[:id])
     @plans = Plan.all
     @enterprise_plan = Plan.where(title: "Enterprise")
   end

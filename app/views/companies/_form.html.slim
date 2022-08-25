@@ -3,10 +3,8 @@
     - if company.errors.any?
       = company.errors.full_messages
     
-    - if @business_plan.try(:company)
-      = f.text_field :plan_id, value: @business_plan.first.id
-    - else
-      = f.text_field :plan_id, value: "2"
+
+    = f.text_field :plan_id
 
     .field 
       = f.submit "submit", class: 'button'

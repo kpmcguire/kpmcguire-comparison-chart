@@ -18,13 +18,11 @@ class CompaniesController < ApplicationController
   def edit
     @company = Company.find(params[:id])
     @plans = Plan.all
-    @enterprise_plan = Plan.where(title: "Enterprise")
   end
   
   def home
-    @company = Company.joins(:plan).where(plan: {title: "Business"}).first_or_create
+    @company = Company.where(plan_id: 3).first_or_create
     @plans = Plan.all.sort_by &:id
-    @enterprise_plan = Plan.where(title: "Enterprise")
   end
 
   def update

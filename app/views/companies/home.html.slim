@@ -30,11 +30,8 @@
               - company = @company
               = turbo_frame_tag "enterprise" do
                 = form_with model: company, id: dom_id(company) do |f|
-                  - if company.errors.any?
-                    = company.errors.full_messages
-                  
-                  = f.hidden_field :plan_id, value: @enterprise_plan.first.id
-              
+                                    
+                  = f.hidden_field :plan_id, value: "3"
                   = f.submit "Get Started", class: 'button'
           - else
             th = h3.plan-title.title

@@ -1,0 +1,32 @@
+@mixin button($color) {
+  background-color: $color;
+  padding: 0.75rem 3rem;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  
+  &:hover, &:focus {
+    background-color: darken($color, 20);
+  }
+  
+  &:active {
+    background-color: lighten($color, 10);
+  }
+}
+
+@mixin for-sm {
+  @media (max-width: 640px) {@content;}
+}
+
+@mixin for-md {
+  @media (max-width: 768px) {@content;}
+}
+
+@mixin for-lg {
+  @media (max-width: 1024px) {@content;}
+}
+
+@mixin for-xl {
+  @media (max-width: 1280px) {@content;}
+}

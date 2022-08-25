@@ -1,103 +1,119 @@
-table
-  thead
-    tr
-      th aria-label="Features" Subscription Plans and Pricing
-      - @plans.each do |p|
-        - if p.title == "Free Tier"
-          td 
-            p 
+.container
+  table
+    thead
+      tr
+        th aria-label="Features" 
+          h1 Subscription Plans and Pricing
+        - @plans.each do |p|
+          - if p.title == "Free Tier"
+            th
               span.fa.fa-user aria-hidden="true"
-            = p.title
-            = p.cost
-            = p.description
-        - if p.title == "Business"
-          td 
-            p 
+              h3.plan-title = p.title
+              p.plan-cost = p.cost
+              p.plan-description = p.description
+          - elsif p.title == "Business"
+            th 
+              .column-label.column-label-most-popular Most Popular
               span.fa.fa-users aria-hidden="true"          
-            = p.title
-            = p.cost
-            = p.description
-            = turbo_frame_tag "business" do
-              p Current Plan - Trial 45 Days Left
-
-        - if p.title == "Enterprise"
-          td 
-            p 
+              h3.plan-title = p.title
+              p.plan-cost = p.cost
+              p.plan-description = p.description
+              = turbo_frame_tag "business" do
+                p Current Plan - Trial 45 Days Left
+  
+          - elsif p.title == "Enterprise"
+            th 
               span.fa.fa-building aria-hidden="true"
-            = p.title
-            = p.cost
-            = p.description
-            - company = @company
-            = turbo_frame_tag "enterprise" do
-              = form_with model: company, id: dom_id(company) do |f|
-                - if company.errors.any?
-                  = company.errors.full_messages
-                
-                = f.hidden_field :plan_id, value: @enterprise_plan.first.id
+              h3.plan-title = p.title
+              p.plan-cost = p.cost
+              p.plan-description = p.description
+              - company = @company
+              = turbo_frame_tag "enterprise" do
+                = form_with model: company, id: dom_id(company) do |f|
+                  - if company.errors.any?
+                    = company.errors.full_messages
+                  
+                  = f.hidden_field :plan_id, value: @enterprise_plan.first.id
               
-                .field 
-                  = f.submit "submit", class: 'button'
-  tbody
-    tr
-      th Reporting Data Storage
-      - @plans.each do |p|
-        td = p.reporting_storage
-    tr
-      th # Of Administrators
-      - @plans.each do |p|
-        td = p.no_of_administrators     
-    tr
-      th Billing
-      - @plans.each do |p|
-        td = p.billing                  
-    tr
-      th 1 Year Price Lock (From Start Time)
-      - @plans.each do |p|
-        td = p.one_year_price_lock             
-    tr
-      th Billing Data Export
-      - @plans.each do |p|
-        td = p.billing_data_export    
-    tr
-      th Automated Monthly Invoices Broken Down By Projects
-      - @plans.each do |p|
-        td = p.automated_invoices_by_projects        
-    tr
-      th Subprojects
-      - @plans.each do |p|
-        td = p.subprojects     
-    tr
-      th HIPAA BAA (*)
-      - @plans.each do |p|
-        td = p.hipaa_baa          
-    tr
-      th Free (Included) Media Storage
-      - @plans.each do |p|
-        td = p.media_storage                                                                     
-    tr
-      th RTMP Out
-      - @plans.each do |p|
-        td = p.rtmp_out            
-        
-    tr
-      th Reseller Tax Agreement (*)
-      - @plans.each do |p|
-        td = p.reseller_tax_agreement
-                
-    tr
-      th Call Throughput (Space Level)
-      - @plans.each do |p|
-        td = p.call_throughout
-    tr
-      td colspan="4" Add-Ons
-        
-    tr
-      th Dedicated IP For BYOC (*)
-      - @plans.each do |p|
-        td = p.dedicated_ip
-           
-    tr
-      th Additional Incremental CPS (SIP Or PSTN)
-      - @plans.each do |p|
-        td = p.additional_incremental_cps            
-
+                  = f.submit "Get Started", class: 'button'
+          - else
+            th = h3.plan-title.title
+    tbody
+      tr
+        th Reporting Data Storage
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.reporting_storage
+      tr
+        th # Of Administrators
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.no_of_administrators     
+      tr
+        th Billing
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.billing                  
+      tr
+        th 1 Year Price Lock (From Start Time)
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.one_year_price_lock             
+      tr
+        th Billing Data Export
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.billing_data_export    
+      tr
+        th Automated Monthly Invoices Broken Down By Projects
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.automated_invoices_by_projects        
+      tr
+        th Subprojects
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.subprojects     
+      tr
+        th HIPAA BAA (*)
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.hipaa_baa          
+      tr
+        th Free (Included) Media Storage
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.media_storage                                                                     
+      tr
+        th RTMP Out
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.rtmp_out            
+          
+      tr
+        th Reseller Tax Agreement (*)
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.reseller_tax_agreement
+                  
+      tr.call-throughput
+        th Call Throughput (Space Level)
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.call_throughout
+      tr
+        td.add-ons colspan="4" Add-Ons
+          
+      tr.no-highlight
+        th Dedicated IP For BYOC (*)
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.dedicated_ip
+             
+      tr.no-highlight
+        th Additional Incremental CPS (SIP Or PSTN)
+        - @plans.each do |p|
+          td data-header="#{p.title}" == p.additional_incremental_cps            
+  .faq
+    h2 FAQ
+    .expander-wrapper
+      .expander-trigger aria-expanded="true" aria-controls="sect1" id="accordion1id" role="button" tabindex="0" 
+        | How does the one year price lock work?
+        .fa.fa-chevron-down aria-hidden="true"
+      .expander-content.hidden id="sect1" role="region" aria-labelledby="accordion1id" 
+        p How does the one year price lock work? Customers will be locked in to the current SignalWire standard tiered rates for up to 12 months when they upgrade to either the Business or Enterprise bundle. The price lock only remains in place for the duration that the customer remains on the paid Business or Enterprise bundle, and rates are based on the date that the bundle upgrade occurred. At the conclusion of the initial one year price lock, the customer will then be locked in at the current SignalWire standard tiered rates (as of the start of month 13) for up to the next 12 months as long as they remain under the Business or Enterprise Bundle. Any custom commit contract pricing and agreed-upon duration supersedes the 12 month price lock line item. 
+     
+    .expander-wrapper 
+      .expander-trigger aria-expanded="false" aria-controls="sect2" id="accordion2id" role="button" tabindex="0" 
+        | How does high throughput calling work as part of the bundles?
+        .fa.fa-chevron-down aria-hidden="true"
+      .expander-content.hidden id="sect2" role="region" aria-labelledby="accordion2id" 
+        p Lorem ipsum dolor sit amet consectetur adipisicing elit.
+ 

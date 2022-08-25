@@ -1,0 +1,25 @@
+@font-face {
+  font-family:'Inter';
+  src:font-url('inter.woff2') format('woff2');
+} 
+
+@font-face {
+  font-family:'Jost';
+  font-style: normal;
+  src:font-url('jost.woff2') format('woff2');
+} 
+
+@font-face {
+  font-family:'Jost';
+  font-style: italic;
+  src:font-url('jost-italic.woff2') format('woff2');
+} 
+
+%font-body {
+  font-family: 'Inter';
+  font-weight: 300;
+}
+
+%font-heading {
+  font-family: 'Jost';
+}

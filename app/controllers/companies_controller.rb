@@ -14,19 +14,19 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    @company = Company.where(plan_id: 2).first_or_create
+    @company = Company.joins(:plan).where(plan: {title: "Business"})
     @plans = Plan.all
     @enterprise_plan = Plan.where(title: "Enterprise")
   end
   
   def home
-    @company = Company.where(plan_id: 2).first_or_create
+    @company = Company.joins(:plan).where(plan: {title: "Business"}).first_or_create
     @plans = Plan.all.sort_by &:id
     @enterprise_plan = Plan.where(title: "Enterprise")
   end
 
   def update
-    @company = Company.joins(:plan).where(plan: {title: "Free"}).first_or_create
+    @company = Company.joins(:plan).where(plan: {title: "Business"}).first_or_create
   
     respond_to do |format|    
       if @company.update(company_params)

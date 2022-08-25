@@ -1,27 +1,354 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
-
-@font-face {
-  font-family:'Inter';
-  src:font-url('inter.woff2') format('woff2');
-} 
-
-@font-face {
-  font-family:'Jost';
-  font-style: normal;
-  src:font-url('jost.woff2') format('woff2');
-} 
-
-@font-face {
-  font-family:'Jost';
-  font-style: italic;
-  src:font-url('jost-italic.woff2') format('woff2');
-} 
+@import "mixins";
+@import "typography";
+@import "variables";
 
 body {
-  font-family: Inter;
+  @extend %font-body;
+  background-color: $page_background;
+  box-sizing: border-box;
+  color: $text_color;
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 1rem;
 }
 
-th {
-  font-family: Jost;
+h1, h2, h3, h4, h5, h6, th  {
+  line-height: 1.1;
 }
+
+p, li, td {
+  line-height: 1.4;
+}
+
+.button {
+  @include button($emphasis_color);
+}
+
+.flash p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #767676;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+table {
+  table-layout: fixed;
+  border-spacing: 0.5rem 0;
+  
+  @include for-md {
+    display: block;
+  }
+  
+  tr, th, td {
+    @include for-md {
+      display: block;
+    }    
+  }
+
+  th, td {
+    padding: clamp(1rem, 2vw, 2rem);
+    background-color: $table_cell_background;
+    border-style: solid;
+    border-color: $cell_border_color;
+    border-width: 0 1px 1px;
+    width: 25%;
+    
+    @include for-md {
+      width: auto;
+      border-width: 0;
+    }
+  }
+  
+  th {
+    @extend %font-heading;
+    font-weight: 450;
+  }
+  
+  thead {
+    @include for-md {
+      display: block;
+    }
+    
+    th {   
+      text-align: center;      
+      vertical-align: top;
+      border-width: 1px;
+      padding-bottom: 0.5rem;
+      
+      &:first-child {
+        text-align: left;
+        background-color: $page_background;      
+        border: none;
+        vertical-align: middle;
+        
+        @include for-md {
+          padding: 1rem 0;
+        }
+        
+        h1 {
+          font-size: clamp(1rem, 3vw, 1.5rem);
+          font-weight: 450;
+          
+          @include for-md {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+          }
+        }
+      }
+      
+      &:nth-child(3) {
+        border-style: solid;
+        border-color: $highlight_color $highlight_color $cell_border_color;
+        border-width: 1px;
+        position: relative;
+        
+        @include for-md {
+          border-color: $highlight_color;
+        }
+      }            
+    }
+    
+    .column-label {
+      position: absolute;
+      bottom: calc(100% + 0.25rem);
+      width: calc(100% + 2px - 0.5rem);
+      left: 0.25rem;
+      margin: calc(-0.25rem - 1px);
+      @extend %font-body;
+      padding: 0.25rem;
+      
+      &.column-label-most-popular {
+        background-color: $highlight_color;
+      }
+    }
+    
+    .fa {
+      font-size: 2rem;
+    }
+    
+    h3 {
+      font-weight: 350;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+    }
+    
+    .plan-cost {
+      font-weight: 500;
+      font-size: 1.4rem;
+      margin: 0.5rem 0;
+    }
+    
+    .plan-description {
+      @extend %font-body;
+      font-weight: 400;
+      margin: 0.5rem 0 1rem;
+    }
+  }
+
+  tbody {
+    @include for-md {
+      display: block;
+    }
+    
+    th {
+      text-align: left;
+      background-color: $page_background;
+      border: none;
+      font-size: 1rem;
+      
+      @include for-md {
+        padding: 1rem 0.125rem;
+      }
+    }
+    
+    tr {
+      td {
+        text-align: center;
+        
+        @include for-md {
+          display: flex;
+        }
+        
+        &::before {
+          @include for-md {
+            display: block;
+            content: attr(data-header);
+            font-weight: 500;
+            width: 50%;
+            text-align: left;
+          }
+        }
+      }
+      
+      &:not(.no-highlight) {
+        td {              
+          &:nth-child(2) {
+            @include for-md {
+              border-width: 1px 1px 0;
+            }
+          }
+          
+          &:nth-child(3) {
+            border-style: solid;
+            border-color: transparent $highlight_color $cell_border_color;
+            border-width: 0 1px 1px;
+            
+            @include for-md {
+              border-width: 1px;
+              border-color: $highlight_color;
+            }
+          }
+          
+          &:nth-child(4) {
+            @include for-md {
+              border-width: 0 1px 1px;
+            }
+          }
+        }
+      }      
+      
+      &.no-highlight {
+        td {
+          border-width: 1px;
+          
+          @include for-md {
+            border-width: 1px 1px 0;
+            
+            &:last-child {
+              border-width: 1px;
+            }
+          }
+          
+          
+        }
+        
+        + .no-highlight {
+          td {
+            border-width: 0 1px 1px;
+
+            @include for-md {
+              border-width: 1px 1px 0;
+              
+              &:last-child {
+                border-width: 1px;
+              }
+            }
+          }
+        }
+      }      
+      
+      &.call-throughput td:nth-child(3) {
+        border-bottom-color: $highlight_color;
+      }      
+    }
+  }
+  
+  .fa-check {
+    color: $checkbox_color;
+  }
+  
+  .na {
+    font-weight: 300;
+    font-size: 1.75rem;
+    color: $na_color;
+  }
+}
+
+
+.add-ons {
+  text-align: left;
+  font-size: 1.5rem;
+  @extend %font-heading;
+  background-color: $page_background;
+  border: none;
+  
+  @include for-md {
+    padding: 1rem 0;
+  }
+  
+  &::before {
+    display: none;
+  }
+}
+
+
+.faq {
+  padding: 0.5rem;
+  
+  h2 {
+    font-size: 1.5rem;
+    @extend %font-heading;
+    font-weight: 450;
+  }
+}
+
+.expander-wrapper {
+  margin: 1rem 0;
+  
+  .expander-trigger {
+    appearance: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    background-color: $table_cell_background;
+    border-style: solid;
+    border-color: $cell_border_color;
+    border-width: 1px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .expander-content {
+    padding: 1.25rem;
+    border-style: solid;
+    border-color: $cell_border_color;
+    border-width: 0 1px 1px;
+    background-color: $table_cell_background;
+    font-size: 1rem;
+    
+    p {
+      display: flex;
+      &::before {
+        content: "• ";
+        margin-right: 0.25rem;
+      }
+    }
+    
+    p:first-of-type {
+      margin-top: 0;
+    }
+    
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.expander-trigger[aria-expanded="true"] {
+  border-width: 1px 1px 0;
+  
+  .fa {
+    transform: rotate(180deg);
+    top: 0.15rem;
+  }
+}
+
+
+

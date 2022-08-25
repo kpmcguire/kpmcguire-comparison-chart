@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  http_basic_authenticate_with name: "kevin", password: ENV['HTTP_BASIC_PASSWORD']
+  http_basic_authenticate_with name: "kevin", password: ENV['HTTP_BASIC_PASSWORD'], only: [:new, :edit]
   
   def index
     @companies = Company.all

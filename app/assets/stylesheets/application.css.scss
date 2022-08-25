@@ -176,6 +176,7 @@ table {
         
         @include for-md {
           display: flex;
+          text-align: left;
         }
         
         &::before {
@@ -183,7 +184,7 @@ table {
             display: block;
             content: attr(data-header);
             font-weight: 500;
-            width: 50%;
+            flex: 0 0 50%;
             text-align: left;
           }
         }
@@ -260,6 +261,7 @@ table {
     font-weight: 300;
     font-size: 1.75rem;
     color: $na_color;
+    line-height: 0.75;
   }
 }
 
